@@ -213,19 +213,19 @@ export default function Navigation() {
           <StudioLogo scrolled={scrolled} />
           <span
             style={{
-              fontFamily:    "'Share Tech Mono', monospace",
-              fontSize:      '10px',
-              letterSpacing: '0.28em',
-              color:         'rgba(211,180,127,0.36)',
+              fontFamily:    "'Cormorant Garamond', Georgia, serif",
+              fontSize:      scrolled ? '0px' : '18px',
+              fontWeight:    700,
+              letterSpacing: '0.12em',
+              color:         'rgba(255,255,255,0.92)',
               textTransform: 'uppercase',
               opacity:       scrolled ? 0 : 1,
-              maxHeight:     scrolled ? 0 : '20px',
               overflow:      'hidden',
-              transition:    'opacity 0.35s ease, max-height 0.35s ease',
+              transition:    'opacity 0.35s ease, font-size 0.35s ease',
               whiteSpace:    'nowrap',
             }}
           >
-            {studio.service}
+            SHOU Edition
           </span>
         </a>
 
