@@ -229,9 +229,7 @@ export default function Navigation() {
           </span>
         </a>
 
-        {/* ─── Droite — Liens ──────────────────────────────────
-            maxWidth = 50% - safeZone → ne dépasse jamais le bord droit du logo
-            marginLeft: auto → reste collé à droite du container */}
+        {/* ─── Droite — Identité proposition ─── */}
         <div
           style={{
             flex:           1,
@@ -240,64 +238,24 @@ export default function Navigation() {
             display:        'flex',
             justifyContent: 'flex-end',
             alignItems:     'center',
-            gap:            '1.5rem',
           }}
         >
-          {navLinks.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="hidden lg:block"
-              style={{
-                fontFamily:     "'Share Tech Mono', monospace",
-                fontSize:       '12px',
-                letterSpacing:  '0.18em',
-                color:          'rgba(255,255,255,0.30)',
-                textTransform:  'uppercase',
-                textDecoration: 'none',
-                transition:     'color 0.25s ease',
-                whiteSpace:     'nowrap',
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = 'rgba(211,180,127,0.88)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.30)'}
-            >
-              {link.label}
-            </a>
-          ))}
-
-          <a
-            href="#contact"
-            className="hidden md:flex items-center"
+          <p
+            className="hidden md:block"
             style={{
-              fontFamily:     "'Share Tech Mono', monospace",
-              fontSize:       '12px',
-              letterSpacing:  '0.18em',
-              color:          'rgba(211,180,127,0.85)',
-              textTransform:  'uppercase',
-              textDecoration: 'none',
-              border:         '1px solid rgba(211,180,127,0.28)',
-              borderRadius:   '10px',
-              padding:        '10px 20px',
-              transition:     'all 0.3s cubic-bezier(0.16,1,0.3,1)',
-              whiteSpace:     'nowrap',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background  = 'rgba(211,180,127,0.09)'
-              e.currentTarget.style.borderColor = 'rgba(211,180,127,0.55)'
-              e.currentTarget.style.color       = 'rgba(211,180,127,1)'
-              e.currentTarget.style.boxShadow   = '0 0 28px rgba(211,180,127,0.14)'
-              e.currentTarget.style.transform   = 'translateY(-2px)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background  = 'transparent'
-              e.currentTarget.style.borderColor = 'rgba(211,180,127,0.28)'
-              e.currentTarget.style.color       = 'rgba(211,180,127,0.85)'
-              e.currentTarget.style.boxShadow   = 'none'
-              e.currentTarget.style.transform   = 'translateY(0)'
+              fontFamily:    "'Share Tech Mono', monospace",
+              fontSize:      '11px',
+              letterSpacing: '0.16em',
+              color:         'rgba(211,180,127,0.45)',
+              textTransform: 'uppercase',
+              whiteSpace:    'nowrap',
+              lineHeight:    1.6,
+              textAlign:     'right',
             }}
           >
-            Démarrer
-          </a>
+            Pôle Marque A.M<br />
+            <span style={{ color: 'rgba(222,218,210,0.22)' }}>TVIS Groupe</span>
+          </p>
         </div>
 
       </div>
