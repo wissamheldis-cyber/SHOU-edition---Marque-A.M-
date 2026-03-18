@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 
+// Détecte quelle section est actuellement visible dans le viewport.
+// Zone de détection : bande centrale à ~30–45% du viewport (threshold 0)
+// → déclenche dès qu'un pixel de la section entre dans cette zone.
 export function useActiveSection(ids) {
   const [activeId, setActiveId] = useState(ids[0] ?? '')
 
@@ -15,8 +18,8 @@ export function useActiveSection(ids) {
           if (entry.isIntersecting) setActiveId(id)
         },
         {
-          threshold:  0.25,
-          rootMargin: '-15% 0px -65% 0px',
+          threshold:  0,
+          rootMargin: '-32% 0px -58% 0px',
         }
       )
 

@@ -2,6 +2,7 @@ import { evolutionData, images } from '../../data/client'
 import SectionWrapper from '../ui/SectionWrapper'
 import SectionLabel from '../ui/SectionLabel'
 import ImageZone from '../ui/ImageZone'
+import SectionCarousel from '../ui/SectionCarousel'
 import Reveal from '../ui/Reveal'
 
 function CheckIcon() {
@@ -28,50 +29,73 @@ function BrowserFrame({ children }) {
   )
 }
 
+function EvolutionSlide({ slide }) {
+  const imgSrc = slide.imageKey ? images[slide.imageKey] : null
+
+  return (
+    <div>
+      {/* Image dans le BrowserFrame */}
+      <BrowserFrame>
+        <ImageZone
+          src={imgSrc}
+          alt={slide.label}
+          label={slide.label}
+          hint="Screenshot de la maquette ou du site de référence"
+          ratio="3/2"
+          rounded="rounded-none"
+        />
+      </BrowserFrame>
+
+      {/* Infos sous la frame */}
+      <div style={{ marginTop: '1.75rem', padding: '0 0.5rem', textAlign: 'center' }}>
+        <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.18em', color: 'rgba(211,180,127,0.42)', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+          {evolutionData.preview.label}
+        </p>
+        <p className="font-serif font-light" style={{ fontSize: '1rem', color: 'rgba(222,218,210,0.72)', marginBottom: '0.5rem' }}>
+          {slide.label}
+        </p>
+        <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(222,218,210,0.30)', maxWidth: '560px', margin: '0 auto' }}>
+          {slide.description}
+        </p>
+
+        {/* Features si présentes */}
+        {slide.features && (
+          <ul style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', marginTop: '1.25rem' }}>
+            {slide.features.map(f => (
+              <li key={f} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <CheckIcon />
+                <span style={{ fontSize: '0.75rem', color: 'rgba(222,218,210,0.38)' }}>{f}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export default function DigitalEvolution() {
   return (
     <SectionWrapper id="evolution" variant="elevated">
 
-      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
-        <Reveal mode="left" className="lg:col-span-5">
-          <SectionLabel>{evolutionData.sectionLabel}</SectionLabel>
-          <h2 className="display-lg mt-2 mb-6">{evolutionData.title}</h2>
-          <p className="font-serif font-light text-sm leading-relaxed mb-8" style={{ color: 'rgba(222,218,210,0.36)' }}>
+      <Reveal mode="up">
+        <div className="mb-14 text-center mx-auto max-w-2xl">
+          <SectionLabel className="justify-center">{evolutionData.sectionLabel}</SectionLabel>
+          <h2 className="display-lg mt-2">{evolutionData.title}</h2>
+          <p className="font-serif font-light mt-5 text-sm leading-relaxed mx-auto max-w-lg" style={{ color: 'rgba(222,218,210,0.36)' }}>
             {evolutionData.subtitle}
           </p>
-          <div className="p-6 rounded-xl glass-gold">
-            <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.18em', color: 'rgba(211,180,127,0.42)', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-              {evolutionData.preview.label}
-            </p>
-            <p className="font-serif font-light text-sm leading-relaxed mb-5" style={{ color: 'rgba(222,218,210,0.60)' }}>
-              {evolutionData.preview.description}
-            </p>
-            <ul className="space-y-2.5">
-              {evolutionData.preview.features.map(f => (
-                <li key={f} className="flex items-start gap-2.5">
-                  <CheckIcon />
-                  <span className="text-xs leading-relaxed" style={{ color: 'rgba(222,218,210,0.38)' }}>{f}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
+        </div>
+      </Reveal>
 
-        <Reveal mode="up" delay={150} className="lg:col-span-7">
-          <BrowserFrame>
-            <ImageZone
-              src={images.landingPreview}
-              alt="Aperçu landing page MVP"
-              label="Landing page MVP"
-              hint="Screenshot de la maquette ou du site de référence"
-              ratio="3/2"
-              rounded="rounded-none"
-            />
-          </BrowserFrame>
-        </Reveal>
-
-      </div>
+      <Reveal mode="fade" delay={150}>
+        <SectionCarousel
+          slides={evolutionData.slides}
+          renderSlide={(slide) => <EvolutionSlide slide={slide} />}
+          autoDelay={4000}
+          fadeColor="#0F0F0F"
+        />
+      </Reveal>
 
     </SectionWrapper>
   )

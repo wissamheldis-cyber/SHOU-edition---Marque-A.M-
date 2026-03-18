@@ -178,16 +178,16 @@ export default function Navigation() {
       <div
         className="container-page"
         style={{
-          height:         '100%',
-          display:        'flex',
-          alignItems:     'center',
-          justifyContent: 'space-between',
-          gap:            '2rem',
+          height:               '100%',
+          display:              'grid',
+          gridTemplateColumns:  '1fr auto 1fr',
+          alignItems:           'center',
+          gap:                  '2rem',
         }}
       >
 
         {/* ─── Gauche — Chapitres ─── */}
-        <div style={{ flex: '1', minWidth: 0 }}>
+        <div style={{ minWidth: 0 }}>
           <ChapterIndicator activeId={activeId} />
         </div>
 
@@ -223,7 +223,7 @@ export default function Navigation() {
 
         {/* ─── Droite — Liens ─── */}
         <div
-          style={{ flex: '1', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '2rem' }}
+          style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '2rem' }}
         >
           {navLinks.map(link => (
             <a

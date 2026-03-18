@@ -29,9 +29,22 @@ export const images = {
   vdTypo:     null, // ex : '/images/direction-typo.png'
   vdUI:       null, // ex : '/images/direction-ui.png'
 
-  // Projection digitale — screenshot de la maquette ou site de référence
+  // Projection digitale — 3 vues du MVP (Desktop, Mobile, Tablette)
   // Format recommandé : 1200×800px minimum, ratio 3:2
-  landingPreview: null, // ex : '/images/landing-preview.png'
+  landingPreview: null, // ex : '/images/landing-desktop.png'
+  landingMobile:  null, // ex : '/images/landing-mobile.png'
+  landingTablet:  null, // ex : '/images/landing-tablet.png'
+
+  // Supports multi-canal — visuels pour chaque support
+  // Ajouter les images dans /public/images/ puis remplacer null
+  supportLinkedIn:  null,
+  supportBanners:   null,
+  supportBrochures: null,
+  supportFiches:    null,
+  supportDevis:     null,
+  supportCatalogue: null,
+  supportLanding:   null,
+  supportTerrain:   null,
 }
 
 // ─── Studio ───────────────────────────────────────────────
@@ -163,14 +176,14 @@ export const supportsData = {
   sectionLabel: 'Projection multi-supports',
   title:   'Partout où la marque doit exister',
   items: [
-    { label: 'LinkedIn',           description: 'Présence éditoriale et professionnelle' },
-    { label: 'Bannières',          description: 'Communication terrain et digitale'       },
-    { label: 'Brochures',          description: 'Documentation commerciale premium'       },
-    { label: 'Fiches produits',    description: 'Clarté technique et accessibilité'       },
-    { label: 'Devis & documents',  description: 'Cohérence documentaire professionnelle'  },
-    { label: 'Catalogue',          description: 'Outil de vente structuré et navigable'   },
-    { label: 'Landing page',       description: 'Présence digitale claire et convertissante' },
-    { label: 'Supports terrain',   description: 'Cartes, signalétique, supports logistiques' },
+    { label: 'LinkedIn',          description: 'Présence éditoriale et professionnelle — posts, bannière, page entreprise.',       imageKey: 'supportLinkedIn'  },
+    { label: 'Bannières',         description: 'Communication terrain et digitale — formats print et display.',                   imageKey: 'supportBanners'   },
+    { label: 'Brochures',         description: 'Documentation commerciale premium — présentation et arguments de vente.',         imageKey: 'supportBrochures' },
+    { label: 'Fiches produits',   description: 'Clarté technique et accessibilité — référencement clair pour votre catalogue.',   imageKey: 'supportFiches'    },
+    { label: 'Devis & documents', description: 'Cohérence documentaire professionnelle — devis, bons de commande, factures.',     imageKey: 'supportDevis'     },
+    { label: 'Catalogue',         description: 'Outil de vente structuré et navigable — mise en valeur de votre offre terrain.',  imageKey: 'supportCatalogue' },
+    { label: 'Landing page',      description: 'Présence digitale claire et convertissante — votre vitrine web au bon niveau.',   imageKey: 'supportLanding'   },
+    { label: 'Supports terrain',  description: 'Cartes, signalétique, stickers logistiques — cohérence sur le terrain aussi.',   imageKey: 'supportTerrain'   },
   ],
 }
 
@@ -204,17 +217,41 @@ export const evolutionData = {
   sectionLabel: 'Évolution digitale',
   title:    'Une projection vers votre présence web',
   subtitle: "Ce n'est pas encore un site. C'est une projection — une façon de voir ce que pourrait devenir votre présence digitale si on lui donnait la même exigence que cette proposition.",
-  preview: {
-    label:       'Landing page MVP',
-    description: "Une page claire, structurée, convertissante — qui raconte ce que TVIS Groupe fait réellement, pour qui, et pourquoi c'est différent.",
-    features: [
-      'Architecture éditoriale pensée pour convaincre',
-      'Hiérarchie visuelle premium et maîtrisée',
-      'Identité de marque pleinement intégrée',
-      'Mobile-first, responsive parfait',
-      'Prête à être connectée à un formulaire ou CRM',
-    ],
-  },
+  // Champ `preview.label` utilisé comme sous-étiquette dans chaque slide
+  preview: { label: 'Landing page MVP' },
+  // Slides du carrousel — ajouter l'image dans /public/images/ et renseigner imageKey
+  slides: [
+    {
+      label:       'Vue Desktop',
+      description: "Une page claire, structurée, convertissante — qui raconte ce que TVIS Groupe fait réellement, pour qui, et pourquoi c'est différent.",
+      imageKey:    'landingPreview',
+      features: [
+        'Architecture éditoriale pensée pour convaincre',
+        'Hiérarchie visuelle premium et maîtrisée',
+        'Identité de marque pleinement intégrée',
+      ],
+    },
+    {
+      label:       'Vue Mobile',
+      description: "Version mobile native — optimisée pour la lecture rapide et la prise de contact depuis terrain. Chaque section adaptée aux petits écrans.",
+      imageKey:    'landingMobile',
+      features: [
+        'Mobile-first, responsive parfait',
+        'Navigation intuitive au pouce',
+        'CTA accessible en un geste',
+      ],
+    },
+    {
+      label:       'Vue Tablette',
+      description: "Adaptée aux usages terrain et présentations clients en déplacement — mise en page intermédiaire pensée pour les commerciaux.",
+      imageKey:    'landingTablet',
+      features: [
+        'Mise en page intermédiaire optimisée',
+        'Idéale pour les présentations terrain',
+        'Prête à être connectée à un CRM',
+      ],
+    },
+  ],
 }
 
 // ─── Bénéfices ────────────────────────────────────────────

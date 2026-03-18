@@ -1,6 +1,8 @@
-import { supportsData } from '../../data/client'
+import { supportsData, images } from '../../data/client'
 import SectionWrapper from '../ui/SectionWrapper'
 import SectionLabel from '../ui/SectionLabel'
+import ImageZone from '../ui/ImageZone'
+import SectionCarousel from '../ui/SectionCarousel'
 import Reveal from '../ui/Reveal'
 
 const iconPaths = {
@@ -14,40 +16,73 @@ const iconPaths = {
   'Supports terrain':   <><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeWidth="1.5"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeWidth="1.5"/></>,
 }
 
+function SupportSlide({ item }) {
+  // Clé d'image dans l'objet `images` : ex. supportLinkedIn, supportBanners…
+  const imageKey = item.imageKey
+  const imgSrc   = imageKey ? images[imageKey] : null
+
+  return (
+    <article
+      style={{
+        borderRadius: '16px',
+        overflow:     'hidden',
+        background:   '#0A0A0A',
+        border:       '1px solid rgba(255,255,255,0.06)',
+      }}
+    >
+      {/* Zone image / placeholder */}
+      <ImageZone
+        src={imgSrc}
+        alt={item.label}
+        label={item.label}
+        hint={`Visuel pour ${item.label}`}
+        ratio="16/9"
+        rounded="rounded-none"
+      />
+
+      {/* Infos */}
+      <div style={{ padding: '1.5rem 1.75rem 1.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '0.75rem' }}>
+          <div style={{
+            width: '36px', height: '36px', flexShrink: 0,
+            borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            background: 'rgba(211,180,127,0.07)', border: '1px solid rgba(211,180,127,0.16)',
+          }}>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" style={{ color: 'rgba(211,180,127,0.65)' }}>
+              {iconPaths[item.label]}
+            </svg>
+          </div>
+          <p className="font-serif font-light" style={{ fontSize: '1rem', color: 'rgba(222,218,210,0.80)' }}>
+            {item.label}
+          </p>
+        </div>
+        <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(222,218,210,0.30)' }}>
+          {item.description}
+        </p>
+      </div>
+    </article>
+  )
+}
+
 export default function MultiSupports() {
   return (
     <SectionWrapper id="supports" variant="surface">
 
       <Reveal mode="up">
-        <div className="mb-12 lg:mb-16 text-center mx-auto max-w-2xl">
+        <div className="mb-14 text-center mx-auto max-w-2xl">
           <SectionLabel className="justify-center">{supportsData.sectionLabel}</SectionLabel>
           <h2 className="display-lg mt-2">{supportsData.title}</h2>
         </div>
       </Reveal>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
-        {supportsData.items.map((item, i) => (
-          <Reveal key={item.label} mode="up" delay={i * 55}>
-            <article
-              className="flex flex-col gap-4 p-6 rounded-xl cursor-default card-hover"
-              style={{ background: '#0A0A0A', border: '1px solid rgba(255,255,255,0.05)' }}
-            >
-              <div
-                className="w-9 h-9 rounded-xl flex items-center justify-center"
-                style={{ background: 'rgba(211,180,127,0.07)', border: '1px solid rgba(211,180,127,0.16)' }}
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" style={{ color: 'rgba(211,180,127,0.65)' }}>
-                  {iconPaths[item.label]}
-                </svg>
-              </div>
-              <div>
-                <p className="text-sm font-medium mb-1" style={{ color: 'rgba(222,218,210,0.72)' }}>{item.label}</p>
-                <p className="text-xs leading-relaxed" style={{ color: 'rgba(222,218,210,0.28)' }}>{item.description}</p>
-              </div>
-            </article>
-          </Reveal>
-        ))}
-      </div>
+      <Reveal mode="fade" delay={150}>
+        <SectionCarousel
+          slides={supportsData.items}
+          renderSlide={(item) => <SupportSlide item={item} />}
+          autoDelay={3000}
+          fadeColor="#0A0A0A"
+        />
+      </Reveal>
 
     </SectionWrapper>
   )
