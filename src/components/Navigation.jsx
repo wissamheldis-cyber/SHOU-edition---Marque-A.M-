@@ -24,11 +24,11 @@ function ChapterIndicator({ activeId }) {
           >
             <span style={{
               fontFamily:    "'Share Tech Mono', monospace",
-              fontSize:      '9px',
+              fontSize:      '11px',
               letterSpacing: '0.10em',
               color:         isActive ? 'rgba(211,180,127,0.60)' : 'rgba(211,180,127,0.18)',
               transition:    'color 0.4s ease',
-              minWidth:      '16px',
+              minWidth:      '18px',
             }}>{ch.num}</span>
 
             <div style={{
@@ -43,8 +43,8 @@ function ChapterIndicator({ activeId }) {
 
             <span style={{
               fontFamily:    "'Share Tech Mono', monospace",
-              fontSize:      '9px',
-              letterSpacing: '0.16em',
+              fontSize:      '11px',
+              letterSpacing: '0.14em',
               color:         isActive ? 'rgba(211,180,127,0.80)' : 'transparent',
               maxWidth:      isActive ? '90px' : '0px',
               overflow:      'hidden',
@@ -74,7 +74,7 @@ function ChapterIndicator({ activeId }) {
 // ─── Logo SHOU ─────────────────────────────────────────────
 function StudioLogo({ scrolled }) {
   const h  = scrolled ? '44px' : '76px'
-  const mw = scrolled ? '160px' : '300px'
+  const mw = scrolled ? '160px' : '280px'
 
   if (images.studioLogo) {
     return (
@@ -132,6 +132,10 @@ export default function Navigation() {
     ? 'height 0.6s cubic-bezier(0.16,1,0.3,1), background 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease, opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1)'
     : 'none'
 
+  // Demi-largeur du logo + marge de sécurité = zone protégée autour du centre
+  // logo maxWidth scrolled=160px → half=80px | unscrolled=280px → half=140px
+  const safeZone = scrolled ? '100px' : '160px'
+
   return (
     <nav
       aria-label="Navigation principale"
@@ -179,32 +183,38 @@ export default function Navigation() {
         }}
       >
 
-        {/* ─── Gauche — Chapitres ─── */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+        {/* ─── Gauche — Chapitres ───────────────────────────────
+            maxWidth = 50% - safeZone → ne dépasse jamais le bord gauche du logo */}
+        <div style={{
+          flex:     1,
+          minWidth: 0,
+          maxWidth: `calc(50% - ${safeZone})`,
+          overflow: 'hidden',
+        }}>
           <ChapterIndicator activeId={activeId} />
         </div>
 
-        {/* ─── Centre — Logo (absolument centré dans le container) ─── */}
+        {/* ─── Centre — Logo (absolument centré) ─── */}
         <a
           href="#top"
           style={{
-            position:      'absolute',
-            left:          '50%',
-            top:           '50%',
-            transform:     'translate(-50%, -50%)',
-            display:       'flex',
-            flexDirection: 'column',
-            alignItems:    'center',
-            gap:           '8px',
+            position:       'absolute',
+            left:           '50%',
+            top:            '50%',
+            transform:      'translate(-50%, -50%)',
+            display:        'flex',
+            flexDirection:  'column',
+            alignItems:     'center',
+            gap:            '8px',
             textDecoration: 'none',
-            zIndex:        2,
+            zIndex:         2,
           }}
         >
           <StudioLogo scrolled={scrolled} />
           <span
             style={{
               fontFamily:    "'Share Tech Mono', monospace",
-              fontSize:      '8px',
+              fontSize:      '10px',
               letterSpacing: '0.28em',
               color:         'rgba(211,180,127,0.36)',
               textTransform: 'uppercase',
@@ -219,26 +229,37 @@ export default function Navigation() {
           </span>
         </a>
 
-        {/* ─── Droite — Liens ─── */}
+        {/* ─── Droite — Liens ──────────────────────────────────
+            maxWidth = 50% - safeZone → ne dépasse jamais le bord droit du logo
+            marginLeft: auto → reste collé à droite du container */}
         <div
-          style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '2rem' }}
+          style={{
+            flex:           1,
+            maxWidth:       `calc(50% - ${safeZone})`,
+            marginLeft:     'auto',
+            display:        'flex',
+            justifyContent: 'flex-end',
+            alignItems:     'center',
+            gap:            '1.5rem',
+          }}
         >
           {navLinks.map(link => (
             <a
               key={link.href}
               href={link.href}
-              className="hidden md:block"
+              className="hidden lg:block"
               style={{
                 fontFamily:     "'Share Tech Mono', monospace",
-                fontSize:       '10px',
-                letterSpacing:  '0.20em',
-                color:          'rgba(255,255,255,0.28)',
+                fontSize:       '12px',
+                letterSpacing:  '0.18em',
+                color:          'rgba(255,255,255,0.30)',
                 textTransform:  'uppercase',
                 textDecoration: 'none',
                 transition:     'color 0.25s ease',
+                whiteSpace:     'nowrap',
               }}
               onMouseEnter={e => e.currentTarget.style.color = 'rgba(211,180,127,0.88)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.28)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.30)'}
             >
               {link.label}
             </a>
@@ -249,15 +270,16 @@ export default function Navigation() {
             className="hidden md:flex items-center"
             style={{
               fontFamily:     "'Share Tech Mono', monospace",
-              fontSize:       '10px',
-              letterSpacing:  '0.20em',
+              fontSize:       '12px',
+              letterSpacing:  '0.18em',
               color:          'rgba(211,180,127,0.85)',
               textTransform:  'uppercase',
               textDecoration: 'none',
               border:         '1px solid rgba(211,180,127,0.28)',
               borderRadius:   '10px',
-              padding:        '10px 22px',
+              padding:        '10px 20px',
               transition:     'all 0.3s cubic-bezier(0.16,1,0.3,1)',
+              whiteSpace:     'nowrap',
             }}
             onMouseEnter={e => {
               e.currentTarget.style.background  = 'rgba(211,180,127,0.09)'

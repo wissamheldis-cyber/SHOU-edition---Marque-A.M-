@@ -28,7 +28,10 @@
 /* ─── Base ─── */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  font-size: 17px;   /* +6% sur tous les rem → tout le texte plus grand */
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -204,7 +207,7 @@ body {
   /* Label section — mono SHOU */
   .section-label {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.78rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     display: inline-flex;
@@ -215,7 +218,7 @@ body {
   .section-label::before {
     content: '';
     display: inline-block;
-    width: 18px;
+    width: 20px;
     height: 1px;
     background: currentColor;
     opacity: 0.5;
