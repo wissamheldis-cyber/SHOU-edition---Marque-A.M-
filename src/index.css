@@ -1,0 +1,255 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   SHOU EDITION — Design Tokens
+   ───────────────────────────────────────────── */
+:root {
+  --shou-base:           #050505;
+  --shou-surface:        #0A0A0A;
+  --shou-elevated:       #0F0F0F;
+
+  --shou-text:           #DEDAD2;
+  --shou-text-2:         #8C8A84;
+  --shou-text-3:         #5C5A54;
+
+  --shou-gold:           #D3B47F;
+  --shou-gold-light:     #E8CFA0;
+  --shou-gold-dim:       rgba(211, 180, 127, 0.45);
+  --shou-gold-subtle:    rgba(211, 180, 127, 0.07);
+  --shou-gold-border:    rgba(211, 180, 127, 0.18);
+
+  --shou-border-faint:   rgba(255, 255, 255, 0.05);
+  --shou-border:         rgba(255, 255, 255, 0.08);
+  --shou-border-medium:  rgba(255, 255, 255, 0.12);
+}
+
+/* ─── Base ─── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--shou-base);
+  color: var(--shou-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════ */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-9px); }
+}
+
+@keyframes floatX {
+  0%, 100% { transform: translateX(0px);  }
+  50%       { transform: translateX(-6px); }
+}
+
+@keyframes goldPulse {
+  0%, 100% { opacity: 0.40; }
+  50%       { opacity: 0.72; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes rotateGlow {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes borderFlicker {
+  0%, 100% { border-color: rgba(211,180,127,0.18); }
+  50%       { border-color: rgba(211,180,127,0.32); }
+}
+
+/* ─── Classes d'animation ─── */
+.float-y  { animation: floatY    5s ease-in-out infinite; }
+.float-x  { animation: floatX    7s ease-in-out infinite; }
+.gold-pulse { animation: goldPulse 3s ease-in-out infinite; }
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    rgba(211,180,127,0.55) 0%,
+    rgba(232,207,160,1.00) 40%,
+    rgba(211,180,127,0.55) 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ═══════════════════════════════════════════
+   GLASSMORPHISM — renforcé
+   ═══════════════════════════════════════════ */
+@layer components {
+
+  .glass-dark {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(24px) saturate(120%);
+    -webkit-backdrop-filter: blur(24px) saturate(120%);
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.35),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .glass-gold {
+    background: rgba(211, 180, 127, 0.055);
+    border: 1px solid rgba(211, 180, 127, 0.18);
+    backdrop-filter: blur(20px) saturate(130%);
+    -webkit-backdrop-filter: blur(20px) saturate(130%);
+    box-shadow:
+      0 8px 32px rgba(211,180,127,0.06),
+      inset 0 1px 0 rgba(211,180,127,0.10);
+  }
+
+  /* Hover lift avec lueur dorée */
+  .card-hover {
+    transition: border-color 0.30s ease, box-shadow 0.30s ease, transform 0.22s ease;
+  }
+  .card-hover:hover {
+    border-color: rgba(211,180,127,0.22) !important;
+    box-shadow: 0 14px 48px rgba(0,0,0,0.45), 0 0 28px rgba(211,180,127,0.07);
+    transform: translateY(-3px);
+  }
+
+  /* Carte surface sombre */
+  .card-dark {
+    background: #0A0A0A;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-dark:hover {
+    border-color: rgba(211,180,127,0.18);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(211,180,127,0.05);
+  }
+
+  .card-gold-border {
+    background: #0A0A0A;
+    border: 1px solid rgba(211,180,127,0.16);
+  }
+
+  /* Label section — mono SHOU */
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--shou-gold-dim);
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  /* Titres display — Cormorant */
+  .display-xl {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--shou-text);
+  }
+  .display-lg {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--shou-text);
+  }
+  .display-md {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--shou-text);
+  }
+
+  /* Heading sans-serif */
+  .heading-xl {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--shou-text);
+  }
+  .heading-lg {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--shou-text);
+  }
+
+  /* Conteneur page */
+  .container-page {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Ligne or */
+  .gold-line {
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--shou-gold-dim);
+  }
+
+  /* Lueur orbitale décorative */
+  .glow-orb {
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: floatY 8s ease-in-out infinite;
+  }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--shou-base); }
+::-webkit-scrollbar-thumb {
+  background: rgba(211,180,127,0.22);
+  border-radius: 2px;
+}
+
+/* ─── Sélection ─── */
+::selection {
+  background: rgba(211,180,127,0.16);
+  color: var(--shou-text);
+}
