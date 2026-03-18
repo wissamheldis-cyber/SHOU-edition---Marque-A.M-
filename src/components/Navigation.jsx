@@ -22,7 +22,6 @@ function ChapterIndicator({ activeId }) {
             className="flex items-center gap-2 group"
             style={{ padding: '6px 8px' }}
           >
-            {/* Numéro */}
             <span style={{
               fontFamily:    "'Share Tech Mono', monospace",
               fontSize:      '9px',
@@ -32,7 +31,6 @@ function ChapterIndicator({ activeId }) {
               minWidth:      '16px',
             }}>{ch.num}</span>
 
-            {/* Dot */}
             <div style={{
               width:        isActive ? 8 : 4,
               height:       isActive ? 8 : 4,
@@ -43,7 +41,6 @@ function ChapterIndicator({ activeId }) {
               flexShrink:   0,
             }} />
 
-            {/* Label */}
             <span style={{
               fontFamily:    "'Share Tech Mono', monospace",
               fontSize:      '9px',
@@ -57,7 +54,6 @@ function ChapterIndicator({ activeId }) {
               textTransform: 'uppercase',
             }}>{ch.label}</span>
 
-            {/* Trait */}
             {i < chapters.length - 1 && (
               <div style={{
                 width:      16,
@@ -146,9 +142,7 @@ export default function Navigation() {
         right:                0,
         zIndex:               50,
         height:               scrolled ? '72px' : '116px',
-        background:           scrolled
-          ? 'rgba(5,5,5,0.94)'
-          : 'rgba(5,5,5,0.22)',
+        background:           scrolled ? 'rgba(5,5,5,0.94)' : 'rgba(5,5,5,0.22)',
         backdropFilter:       'blur(36px) saturate(160%)',
         WebkitBackdropFilter: 'blur(36px) saturate(160%)',
         borderBottom:         `1px solid rgba(211,180,127,${scrolled ? '0.14' : '0.06'})`,
@@ -159,18 +153,18 @@ export default function Navigation() {
       }}
     >
 
-      {/* ─── Ligne or animée (scroll progress indicator) ─── */}
+      {/* ─── Ligne or animée ─── */}
       <div
         aria-hidden="true"
         style={{
-          position:       'absolute',
-          bottom:         0,
-          left:           0,
-          height:         '1px',
-          width:          scrolled ? '100%' : '0%',
-          background:     'linear-gradient(to right, transparent 0%, rgba(211,180,127,0.50) 40%, rgba(211,180,127,0.50) 60%, transparent 100%)',
-          transition:     'width 1s cubic-bezier(0.16,1,0.3,1)',
-          pointerEvents:  'none',
+          position:      'absolute',
+          bottom:        0,
+          left:          0,
+          height:        '1px',
+          width:         scrolled ? '100%' : '0%',
+          background:    'linear-gradient(to right, transparent 0%, rgba(211,180,127,0.50) 40%, rgba(211,180,127,0.50) 60%, transparent 100%)',
+          transition:    'width 1s cubic-bezier(0.16,1,0.3,1)',
+          pointerEvents: 'none',
         }}
       />
 
@@ -178,29 +172,32 @@ export default function Navigation() {
       <div
         className="container-page"
         style={{
-          height:               '100%',
-          display:              'grid',
-          gridTemplateColumns:  '1fr auto 1fr',
-          alignItems:           'center',
-          gap:                  '2rem',
+          position:   'relative',
+          height:     '100%',
+          display:    'flex',
+          alignItems: 'center',
         }}
       >
 
         {/* ─── Gauche — Chapitres ─── */}
-        <div style={{ minWidth: 0 }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
           <ChapterIndicator activeId={activeId} />
         </div>
 
-        {/* ─── Centre — Logo + Service ─── */}
+        {/* ─── Centre — Logo (absolument centré dans le container) ─── */}
         <a
           href="#top"
           style={{
+            position:      'absolute',
+            left:          '50%',
+            top:           '50%',
+            transform:     'translate(-50%, -50%)',
             display:       'flex',
             flexDirection: 'column',
             alignItems:    'center',
             gap:           '8px',
             textDecoration: 'none',
-            flexShrink:    0,
+            zIndex:        2,
           }}
         >
           <StudioLogo scrolled={scrolled} />
@@ -215,6 +212,7 @@ export default function Navigation() {
               maxHeight:     scrolled ? 0 : '20px',
               overflow:      'hidden',
               transition:    'opacity 0.35s ease, max-height 0.35s ease',
+              whiteSpace:    'nowrap',
             }}
           >
             {studio.service}
@@ -223,7 +221,7 @@ export default function Navigation() {
 
         {/* ─── Droite — Liens ─── */}
         <div
-          style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '2rem' }}
+          style={{ flex: 1, display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '2rem' }}
         >
           {navLinks.map(link => (
             <a
@@ -265,7 +263,7 @@ export default function Navigation() {
               e.currentTarget.style.background  = 'rgba(211,180,127,0.09)'
               e.currentTarget.style.borderColor = 'rgba(211,180,127,0.55)'
               e.currentTarget.style.color       = 'rgba(211,180,127,1)'
-              e.currentTarget.style.boxShadow   = '0 0 28px rgba(211,180,127,0.14), inset 0 1px 0 rgba(211,180,127,0.15)'
+              e.currentTarget.style.boxShadow   = '0 0 28px rgba(211,180,127,0.14)'
               e.currentTarget.style.transform   = 'translateY(-2px)'
             }}
             onMouseLeave={e => {

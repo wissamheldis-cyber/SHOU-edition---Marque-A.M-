@@ -224,7 +224,7 @@ body {
   /* Titres display — Cormorant */
   .display-xl {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
     font-weight: 300;
     line-height: 1.05;
     letter-spacing: -0.01em;
@@ -232,17 +232,17 @@ body {
   }
   .display-lg {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 300;
-    line-height: 1.1;
+    line-height: 1.08;
     letter-spacing: -0.01em;
     color: var(--shou-text);
   }
   .display-md {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 400;
-    line-height: 1.15;
+    line-height: 1.12;
     color: var(--shou-text);
   }
 
