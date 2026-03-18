@@ -73,8 +73,8 @@ function ChapterIndicator({ activeId }) {
 
 // ─── Logo SHOU ─────────────────────────────────────────────
 function StudioLogo({ scrolled }) {
-  const h  = scrolled ? '44px' : '76px'
-  const mw = scrolled ? '160px' : '280px'
+  const h  = scrolled ? '52px' : '100px'
+  const mw = scrolled ? '200px' : '360px'
 
   if (images.studioLogo) {
     return (
@@ -211,22 +211,6 @@ export default function Navigation() {
           }}
         >
           <StudioLogo scrolled={scrolled} />
-          <span
-            style={{
-              fontFamily:    "'Cormorant Garamond', Georgia, serif",
-              fontSize:      scrolled ? '0px' : '18px',
-              fontWeight:    700,
-              letterSpacing: '0.12em',
-              color:         'rgba(255,255,255,0.92)',
-              textTransform: 'uppercase',
-              opacity:       scrolled ? 0 : 1,
-              overflow:      'hidden',
-              transition:    'opacity 0.35s ease, font-size 0.35s ease',
-              whiteSpace:    'nowrap',
-            }}
-          >
-            SHOU Edition
-          </span>
         </a>
 
         {/* ─── Droite — Identité proposition ─── */}
