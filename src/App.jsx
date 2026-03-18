@@ -2,6 +2,7 @@
 // Assemblage de la landing page complète.
 // Pour dupliquer ce template, remplacer uniquement src/data/client.js
 
+import CursorGlow       from './components/ui/CursorGlow'
 import Navigation       from './components/Navigation'
 import Hero             from './components/sections/Hero'
 import ProjectReading   from './components/sections/ProjectReading'
@@ -20,6 +21,9 @@ import FinalCTA         from './components/sections/FinalCTA'
 export default function App() {
   return (
     <>
+      {/* Spotlight doré qui suit le curseur */}
+      <CursorGlow />
+
       {/* Navigation sticky */}
       <Navigation />
 

@@ -77,10 +77,64 @@ body {
   50%       { border-color: rgba(211,180,127,0.32); }
 }
 
+@keyframes scanLine {
+  0%   { top: 0%;    opacity: 0; }
+  5%   { opacity: 0.55; }
+  92%  { opacity: 0.55; }
+  100% { top: 100%;  opacity: 0; }
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.08; }
+}
+
+@keyframes morphBlob {
+  0%, 100% { border-radius: 60% 40% 55% 45% / 55% 45% 55% 45%; }
+  33%       { border-radius: 40% 60% 45% 55% / 60% 40% 60% 40%; }
+  66%       { border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%; }
+}
+
+@keyframes glowPulseAnim {
+  0%, 100% { box-shadow: 0 0 20px rgba(211,180,127,0.10), 0 0 60px rgba(211,180,127,0.04); }
+  50%       { box-shadow: 0 0 45px rgba(211,180,127,0.28), 0 0 100px rgba(211,180,127,0.10); }
+}
+
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(48px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes revealClip {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0);   }
+}
+
+@keyframes typewriterCursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
 /* ─── Classes d'animation ─── */
-.float-y  { animation: floatY    5s ease-in-out infinite; }
-.float-x  { animation: floatX    7s ease-in-out infinite; }
-.gold-pulse { animation: goldPulse 3s ease-in-out infinite; }
+.float-y         { animation: floatY       5s ease-in-out infinite; }
+.float-x         { animation: floatX       7s ease-in-out infinite; }
+.gold-pulse      { animation: goldPulse    3s ease-in-out infinite; }
+.dot-blink       { animation: dotBlink     1.8s ease-in-out infinite; }
+.morph-blob      { animation: morphBlob    10s ease-in-out infinite; }
+.glow-pulse-anim { animation: glowPulseAnim 3.5s ease-in-out infinite; }
+.rotate-orbit    { animation: rotateGlow   38s linear infinite; }
+.rotate-orbit-r  { animation: rotateGlow   60s linear infinite reverse; }
+.line-grow       { transform-origin: left center; animation: lineGrow 1.1s cubic-bezier(0.16,1,0.3,1) both; }
+.scan-line-anim  {
+  position: absolute;
+  left: 0; right: 0;
+  animation: scanLine 16s ease-in-out infinite;
+}
 
 .shimmer-text {
   background: linear-gradient(
