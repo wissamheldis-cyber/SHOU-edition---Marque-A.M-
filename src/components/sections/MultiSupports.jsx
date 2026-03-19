@@ -1,7 +1,6 @@
 import { supportsData, images } from '../../data/client'
 import SectionWrapper from '../ui/SectionWrapper'
 import SectionLabel from '../ui/SectionLabel'
-import ImageZone from '../ui/ImageZone'
 import SectionCarousel from '../ui/SectionCarousel'
 import Reveal from '../ui/Reveal'
 
@@ -17,7 +16,6 @@ const iconPaths = {
 }
 
 function SupportSlide({ item }) {
-  // Clé d'image dans l'objet `images` : ex. supportLinkedIn, supportBanners…
   const imageKey = item.imageKey
   const imgSrc   = imageKey ? images[imageKey] : null
 
@@ -30,15 +28,50 @@ function SupportSlide({ item }) {
         border:       '1px solid rgba(255,255,255,0.06)',
       }}
     >
-      {/* Zone image / placeholder */}
-      <ImageZone
-        src={imgSrc}
-        alt={item.label}
-        label={item.label}
-        hint={`Visuel pour ${item.label}`}
-        ratio="16/9"
-        rounded="rounded-none"
-      />
+      {/* Zone image ou placeholder cadenas */}
+      {imgSrc ? (
+        <div style={{ aspectRatio: '16/9', overflow: 'hidden' }}>
+          <img src={imgSrc} alt={item.label} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        </div>
+      ) : (
+        <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}>
+          <div style={{
+            position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+            background: 'rgba(255,255,255,0.018)',
+            border: '1px dashed rgba(211,180,127,0.18)',
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center', gap: '12px',
+          }}>
+            {/* Coin haut-gauche */}
+            <div aria-hidden="true" style={{ position:'absolute', top:10, left:10, width:16, height:16, borderTop:'1px solid rgba(211,180,127,0.45)', borderLeft:'1px solid rgba(211,180,127,0.45)' }} />
+            {/* Coin haut-droit */}
+            <div aria-hidden="true" style={{ position:'absolute', top:10, right:10, width:16, height:16, borderTop:'1px solid rgba(211,180,127,0.45)', borderRight:'1px solid rgba(211,180,127,0.45)' }} />
+            {/* Coin bas-gauche */}
+            <div aria-hidden="true" style={{ position:'absolute', bottom:10, left:10, width:16, height:16, borderBottom:'1px solid rgba(211,180,127,0.45)', borderLeft:'1px solid rgba(211,180,127,0.45)' }} />
+            {/* Coin bas-droit */}
+            <div aria-hidden="true" style={{ position:'absolute', bottom:10, right:10, width:16, height:16, borderBottom:'1px solid rgba(211,180,127,0.45)', borderRight:'1px solid rgba(211,180,127,0.45)' }} />
+            {/* Cadenas */}
+            <div style={{
+              width:'40px', height:'40px', borderRadius:'10px', flexShrink: 0,
+              display:'flex', alignItems:'center', justifyContent:'center',
+              background:'rgba(211,180,127,0.07)', border:'1px solid rgba(211,180,127,0.18)',
+            }}>
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="rgba(211,180,127,0.55)" strokeWidth="1.2" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            {/* Texte */}
+            <div style={{ textAlign:'center' }}>
+              <p style={{ fontFamily:"'Share Tech Mono',monospace", fontSize:'9px', letterSpacing:'0.22em', textTransform:'uppercase', color:'rgba(211,180,127,0.55)', marginBottom:'6px' }}>
+                {item.label}
+              </p>
+              <p style={{ fontSize:'10px', lineHeight:1.6, color:'rgba(222,218,210,0.28)', maxWidth:'180px' }}>
+                Sera défini lors de notre rendez-vous pour affiner vos intentions.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Infos */}
       <div style={{ padding: '1.5rem 1.75rem 1.75rem' }}>

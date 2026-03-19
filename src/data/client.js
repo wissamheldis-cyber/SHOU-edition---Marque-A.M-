@@ -17,14 +17,14 @@ export const images = {
 
   // Logo du client — affiché dans le Hero à la place du texte
   // Format recommandé : PNG transparent, hauteur 80-120px
-  clientLogo: null, // ex : '/images/tvis-logo.png'
+  clientLogo: '/images/4.png',
 
   // Visuel principal du Hero — screenshot du site actuel ou mockup
-  heroVisual: null, // ex : '/images/tvis-site-actuel.png'
+  heroVisual: '/images/7.png',
 
   // Direction visuelle — captures depuis votre outil de design
-  vdPalette:  null, // ex : '/images/direction-palette.png'
-  vdLogo:     null, // ex : '/images/direction-logo.png'
+  vdPalette:  '/images/6.png',
+  vdLogo:     '/images/1.png',
   vdTypo:     null, // ex : '/images/direction-typo.png'
   vdUI:       null, // ex : '/images/direction-ui.png'
 
@@ -36,9 +36,9 @@ export const images = {
   // Supports multi-canal
   supportLinkedIn:  null,
   supportBanners:   null,
-  supportBrochures: null,
-  supportFiches:    null,
-  supportDevis:     null,
+  supportBrochures: '/images/5.png',
+  supportFiches:    '/images/9.png',
+  supportDevis:     '/images/8.png',
   supportCatalogue: null,
   supportLanding:   null,
   supportTerrain:   null,

@@ -16,74 +16,42 @@ const iconPaths = {
   'Supports terrain':   <><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" strokeWidth="1.5"/><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" strokeWidth="1.5"/></>,
 }
 
-// Vitrine typographique quand aucune image n'est disponible
+// Placeholder cadenas — affiché quand aucune image n'est disponible
 function SupportTypoVisual({ label }) {
   return (
-    <div
-      style={{
-        aspectRatio: '16/9',
-        background:  'linear-gradient(135deg, rgba(211,180,127,0.05) 0%, rgba(5,5,5,0) 100%)',
-        borderBottom: '1px solid rgba(211,180,127,0.08)',
-        display:      'flex',
-        flexDirection:'column',
-        alignItems:   'center',
-        justifyContent:'center',
-        position:     'relative',
-        overflow:     'hidden',
-      }}
-    >
-      {/* Grille de fond */}
-      <div
-        aria-hidden="true"
-        style={{
-          position:            'absolute',
-          inset:               0,
-          backgroundImage:     'linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px)',
-          backgroundSize:      '48px 48px',
-        }}
-      />
-      {/* Halo central */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: 'absolute',
-          top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '240px', height: '120px',
-          background: 'radial-gradient(ellipse, rgba(211,180,127,0.06) 0%, transparent 70%)',
-        }}
-      />
-      {/* Nom du support en grande typo */}
-      <p
-        style={{
-          fontFamily:    "'Cormorant Garamond', Georgia, serif",
-          fontSize:      'clamp(1.8rem, 4vw, 3rem)',
-          fontWeight:    300,
-          letterSpacing: '0.02em',
-          color:         'rgba(222,218,210,0.10)',
-          position:      'relative',
-          zIndex:        1,
-          textAlign:     'center',
-          padding:       '0 1rem',
-        }}
-      >
-        {label}
-      </p>
-      {/* Tag coin */}
-      <span
-        style={{
-          position:      'absolute',
-          top:           '14px',
-          right:         '14px',
-          fontFamily:    "'Share Tech Mono', monospace",
-          fontSize:      '7px',
-          letterSpacing: '0.20em',
-          color:         'rgba(211,180,127,0.22)',
-          textTransform: 'uppercase',
-        }}
-      >
-        Visuel à venir
-      </span>
+    <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}>
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
+        background: 'rgba(255,255,255,0.018)',
+        border: '1px dashed rgba(211,180,127,0.18)',
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center', gap: '12px',
+      }}>
+        {/* Coins */}
+        <div aria-hidden="true" style={{ position:'absolute', top:10, left:10,  width:16, height:16, borderTop:'1px solid rgba(211,180,127,0.45)', borderLeft:'1px solid rgba(211,180,127,0.45)' }} />
+        <div aria-hidden="true" style={{ position:'absolute', top:10, right:10, width:16, height:16, borderTop:'1px solid rgba(211,180,127,0.45)', borderRight:'1px solid rgba(211,180,127,0.45)' }} />
+        <div aria-hidden="true" style={{ position:'absolute', bottom:10, left:10,  width:16, height:16, borderBottom:'1px solid rgba(211,180,127,0.45)', borderLeft:'1px solid rgba(211,180,127,0.45)' }} />
+        <div aria-hidden="true" style={{ position:'absolute', bottom:10, right:10, width:16, height:16, borderBottom:'1px solid rgba(211,180,127,0.45)', borderRight:'1px solid rgba(211,180,127,0.45)' }} />
+        {/* Cadenas */}
+        <div style={{
+          width:'40px', height:'40px', borderRadius:'10px', flexShrink:0,
+          display:'flex', alignItems:'center', justifyContent:'center',
+          background:'rgba(211,180,127,0.07)', border:'1px solid rgba(211,180,127,0.18)',
+        }}>
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="rgba(211,180,127,0.55)" strokeWidth="1.2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        {/* Texte */}
+        <div style={{ textAlign:'center' }}>
+          <p style={{ fontFamily:"'Share Tech Mono',monospace", fontSize:'9px', letterSpacing:'0.22em', textTransform:'uppercase', color:'rgba(211,180,127,0.55)', marginBottom:'6px' }}>
+            {label}
+          </p>
+          <p style={{ fontSize:'10px', lineHeight:1.6, color:'rgba(222,218,210,0.28)', maxWidth:'180px', margin:'0 auto' }}>
+            Sera défini lors de notre rendez-vous pour affiner vos intentions.
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

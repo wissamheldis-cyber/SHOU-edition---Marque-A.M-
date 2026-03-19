@@ -56,7 +56,7 @@ export default function ImageZone({
 
       {/* Centre */}
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6">
-        {/* Icône image */}
+        {/* Icône cadenas */}
         <div
           className="w-10 h-10 rounded-xl flex items-center justify-center"
           style={{
@@ -76,13 +76,13 @@ export default function ImageZone({
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
             />
           </svg>
         </div>
 
-        {/* Label + hint */}
-        <div className="text-center space-y-1">
+        {/* Message */}
+        <div className="text-center space-y-1.5">
           <p
             className="font-mono text-[9px] tracking-widest uppercase"
             style={{ color: 'rgba(211,180,127,0.55)' }}
@@ -90,10 +90,10 @@ export default function ImageZone({
             {label}
           </p>
           <p
-            className="text-[10px] leading-relaxed max-w-[160px] mx-auto"
-            style={{ color: 'rgba(222,218,210,0.20)' }}
+            className="text-[10px] leading-relaxed max-w-[180px] mx-auto"
+            style={{ color: 'rgba(222,218,210,0.28)' }}
           >
-            {hint}
+            Sera défini lors de notre rendez-vous pour affiner vos intentions.
           </p>
         </div>
       </div>

@@ -20,9 +20,9 @@ const C3 = 5600          // image 3 apparaît
 const CALL = 8300        // toutes les 3 ensemble
 
 const SLIDES = [
-  { num: '01', label: 'Identité visuelle',         hint: 'Charte graphique · Palette · Typographies',   icon: '◈', ratio: '4/3'  },
-  { num: '02', label: 'Supports de communication', hint: 'Carte de visite · Documents · Présentations', icon: '◉', ratio: '4/3'  },
-  { num: '03', label: 'Présence digitale',         hint: 'Site web · LinkedIn · Email',                 icon: '◎', ratio: '16/9' },
+  { num: '01', label: 'Logotype TVIS Groupe',  hint: 'Logo · Déclinaisons · Univers visuel',  icon: '◈', ratio: '4/3',  src: '/images/1.png'  },
+  { num: '02', label: 'Supports de marque',    hint: 'Brochure · Fiches produits · Devis',    icon: '◉', ratio: '4/3',  src: '/images/5.png'  },
+  { num: '03', label: "Système d'identité",    hint: 'Charte complète · Print · Digital',     icon: '◎', ratio: '16/9', src: '/images/7.png'  },
 ]
 
 // ── Icônes ───────────────────────────────────────────────────
@@ -66,9 +66,28 @@ function LoadingBar({ done }) {
   )
 }
 
-// ── Placeholder image (carrousel) ────────────────────────────
+// ── Image du carrousel (réelle ou placeholder) ───────────────
 function SlideImage({ slide, glow = false }) {
-  const isWide = slide.ratio === '16/9'
+  if (slide.src) {
+    return (
+      <div style={{
+        position: 'relative', overflow: 'hidden',
+        aspectRatio: slide.ratio,
+        width: '100%',
+        borderRadius: '14px',
+        border: `1px solid rgba(211,180,127,${glow ? 0.32 : 0.12})`,
+        transition: 'border-color 0.6s ease, box-shadow 0.6s ease',
+        boxShadow: glow ? '0 0 48px rgba(211,180,127,0.14)' : 'none',
+      }}>
+        <img src={slide.src} alt={slide.label} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        {/* Légende overlay */}
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 16px 14px', background: 'linear-gradient(to top,rgba(5,5,5,0.72) 0%,transparent 100%)' }}>
+          <span style={{ fontFamily: "'Share Tech Mono',monospace", fontSize: '8px', letterSpacing: '0.22em', color: 'rgba(211,180,127,0.65)', textTransform: 'uppercase' }}>{slide.num} — {slide.label}</span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div style={{
       position: 'relative', overflow: 'hidden',
@@ -80,18 +99,13 @@ function SlideImage({ slide, glow = false }) {
       transition: 'border-color 0.6s ease, box-shadow 0.6s ease',
       boxShadow: glow ? '0 0 40px rgba(211,180,127,0.10), inset 0 0 60px rgba(211,180,127,0.03)' : 'none',
     }}>
-      {/* Grille intérieure */}
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.020) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.020) 1px,transparent 1px)', backgroundSize: '36px 36px', opacity: 0.7 }} />
-      {/* Halo central */}
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: '55%', height: '55%', background: 'radial-gradient(circle,rgba(211,180,127,0.07) 0%,transparent 70%)' }} />
-      {/* Scan line animé (CSS inline) */}
       <div className="scan-line-anim" style={{ position: 'absolute', left: 0, right: 0, height: '1px', background: 'linear-gradient(to right,transparent 0%,rgba(211,180,127,0.22) 50%,transparent 100%)' }} />
-      {/* Coins intérieurs */}
       <div style={{ position: 'absolute', top: 10, left: 10, width: 16, height: 16, borderTop: '1px solid rgba(211,180,127,0.28)', borderLeft: '1px solid rgba(211,180,127,0.28)' }} />
       <div style={{ position: 'absolute', top: 10, right: 10, width: 16, height: 16, borderTop: '1px solid rgba(211,180,127,0.28)', borderRight: '1px solid rgba(211,180,127,0.28)' }} />
       <div style={{ position: 'absolute', bottom: 10, left: 10, width: 16, height: 16, borderBottom: '1px solid rgba(211,180,127,0.28)', borderLeft: '1px solid rgba(211,180,127,0.28)' }} />
       <div style={{ position: 'absolute', bottom: 10, right: 10, width: 16, height: 16, borderBottom: '1px solid rgba(211,180,127,0.28)', borderRight: '1px solid rgba(211,180,127,0.28)' }} />
-      {/* Contenu */}
       <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
         <span style={{ fontFamily: "'Share Tech Mono',monospace", fontSize: '11px', letterSpacing: '0.18em', color: 'rgba(211,180,127,0.45)', textTransform: 'uppercase' }}>{slide.num}</span>
         <span style={{ fontFamily: "'Cormorant Garamond',Georgia,serif", fontSize: 'clamp(1.1rem,2vw,1.5rem)', fontWeight: 300, color: 'rgba(222,218,210,0.88)', letterSpacing: '-0.01em' }}>{slide.label}</span>
@@ -212,28 +226,58 @@ export default function LoadingScreen({ onDone }) {
         </div>
       )}
 
-      {/* ── Bouton Pause / Play ──────────────────────────── */}
-      {phase >= 1 && phase < 4 && !leaving && (
-        <button
-          onClick={() => setPaused(p => !p)}
-          aria-label={paused ? 'Reprendre' : 'Mettre en pause'}
-          style={{
-            position: 'absolute', top: 24, right: 24,
-            display: 'flex', alignItems: 'center', gap: '6px',
-            padding: '7px 14px', borderRadius: '20px',
-            background: 'transparent',
-            border: '1px solid rgba(211,180,127,0.20)',
-            color: 'rgba(211,180,127,0.55)',
-            cursor: 'pointer',
-            fontFamily: "'Share Tech Mono',monospace", fontSize: '8px', letterSpacing: '0.16em', textTransform: 'uppercase',
-            transition: 'all 0.25s ease',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(211,180,127,0.42)'; e.currentTarget.style.color = 'rgba(211,180,127,0.90)' }}
-          onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(211,180,127,0.20)'; e.currentTarget.style.color = 'rgba(211,180,127,0.55)' }}
-        >
-          {paused ? <PlayIcon /> : <PauseIcon />}
-          {paused ? 'Reprendre' : 'Pause'}
-        </button>
+      {/* ── Boutons Pause / Play + Passer ───────────────── */}
+      {phase < 4 && !leaving && (
+        <div style={{
+          position: 'absolute', bottom: 40, left: '50%', transform: 'translateX(-50%)',
+          display: 'flex', gap: '8px', alignItems: 'center',
+          zIndex: 10,
+        }}>
+          {/* Pause / Play */}
+          {phase >= 1 && (
+            <button
+              onClick={() => setPaused(p => !p)}
+              aria-label={paused ? 'Reprendre' : 'Mettre en pause'}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '6px',
+                padding: '7px 14px', borderRadius: '20px',
+                background: 'rgba(5,5,5,0.6)',
+                border: '1px solid rgba(211,180,127,0.20)',
+                color: 'rgba(211,180,127,0.55)',
+                cursor: 'pointer',
+                fontFamily: "'Share Tech Mono',monospace", fontSize: '8px', letterSpacing: '0.16em', textTransform: 'uppercase',
+                transition: 'all 0.25s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(211,180,127,0.42)'; e.currentTarget.style.color = 'rgba(211,180,127,0.90)' }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(211,180,127,0.20)'; e.currentTarget.style.color = 'rgba(211,180,127,0.55)' }}
+            >
+              {paused ? <PlayIcon /> : <PauseIcon />}
+              {paused ? 'Reprendre' : 'Pause'}
+            </button>
+          )}
+          {/* Passer */}
+          <button
+            onClick={() => setElapsed(P4)}
+            aria-label="Passer l'introduction"
+            style={{
+              display: 'flex', alignItems: 'center', gap: '6px',
+              padding: '7px 14px', borderRadius: '20px',
+              background: 'rgba(5,5,5,0.6)',
+              border: '1px solid rgba(211,180,127,0.20)',
+              color: 'rgba(211,180,127,0.55)',
+              cursor: 'pointer',
+              fontFamily: "'Share Tech Mono',monospace", fontSize: '8px', letterSpacing: '0.16em', textTransform: 'uppercase',
+              transition: 'all 0.25s ease',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(211,180,127,0.42)'; e.currentTarget.style.color = 'rgba(211,180,127,0.90)' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(211,180,127,0.20)'; e.currentTarget.style.color = 'rgba(211,180,127,0.55)' }}
+          >
+            Passer
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M6 18L14.5 12 6 6v12zm2.5-6l6 4-6-4zm5.5-6v12h2V6h-2z"/>
+            </svg>
+          </button>
+        </div>
       )}
 
       {/* ══ PHASE 0-1 : Logo + chargement ══════════════════ */}
