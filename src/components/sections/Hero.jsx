@@ -1,5 +1,4 @@
 import { heroData, images, client } from '../../data/client'
-import ImageZone from '../ui/ImageZone'
 import Reveal from '../ui/Reveal'
 
 function ArrowRight() {
@@ -109,7 +108,7 @@ export default function Hero() {
       </div>
 
       {/* ─── Contenu ─── */}
-      <div className="relative z-10 container-page pt-24 md:pt-32 lg:pt-40 pb-16 lg:pb-20 flex flex-col items-center">
+      <div className="relative z-10 container-page pt-24 md:pt-32 lg:pt-40 pb-32 flex flex-col items-center">
 
         {/* Label studio + dot */}
         <Reveal mode="fade" delay={0} duration={700}>
@@ -228,73 +227,6 @@ export default function Hero() {
           </div>
         </Reveal>
 
-        {/* ─── Zone image ─── */}
-        <Reveal mode="up" delay={640} duration={1200}>
-          <div className="relative mt-12 lg:mt-20 w-full max-w-5xl mx-auto">
-            {/* Ombres de profondeur */}
-            <div className="absolute inset-4 rounded-2xl" style={{ background: 'rgba(211,180,127,0.03)', border: '1px solid rgba(211,180,127,0.06)', transform: 'rotate(1deg) translateY(8px)', zIndex: 0 }} />
-            <div className="absolute inset-2 rounded-2xl" style={{ background: 'rgba(211,180,127,0.015)', border: '1px solid rgba(211,180,127,0.04)', transform: 'rotate(-0.5deg) translateY(4px)', zIndex: 0 }} />
-
-            <div className="relative z-10">
-              <ImageZone
-                src={images.heroVisual}
-                alt="Présence actuelle de TVIS Groupe"
-                label="Visuel client"
-                hint="Screenshot du site actuel, ou mockup de direction"
-                ratio="16/9"
-                rounded="rounded-2xl"
-              />
-            </div>
-
-            {/* ─── Badges glassmorphisme — symétriques ─── */}
-            <div
-              className="float-y"
-              style={{
-                position:            'absolute',
-                bottom:              '16px',
-                left:                '16px',
-                display:             'flex',
-                alignItems:          'center',
-                gap:                 '8px',
-                padding:             '10px 16px',
-                borderRadius:        '10px',
-                background:          'rgba(5,5,5,0.72)',
-                backdropFilter:      'blur(20px) saturate(140%)',
-                WebkitBackdropFilter:'blur(20px) saturate(140%)',
-                border:              '1px solid rgba(255,255,255,0.08)',
-                zIndex:              20,
-                animationDelay:      '0.3s',
-              }}
-            >
-              <div className="dot-blink" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'rgba(211,180,127,0.80)', boxShadow: '0 0 6px rgba(211,180,127,0.55)', flexShrink: 0 }} />
-              <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.16em', color: 'rgba(222,218,210,0.88)', whiteSpace: 'nowrap' }}>
-                ANALYSE COMPLÉTÉE
-              </span>
-            </div>
-
-            <div
-              className="float-x"
-              style={{
-                position:            'absolute',
-                bottom:              '16px',
-                right:               '16px',
-                padding:             '10px 16px',
-                borderRadius:        '10px',
-                background:          'rgba(211,180,127,0.07)',
-                backdropFilter:      'blur(20px) saturate(140%)',
-                WebkitBackdropFilter:'blur(20px) saturate(140%)',
-                border:              '1px solid rgba(211,180,127,0.22)',
-                zIndex:              20,
-                animationDelay:      '1.2s',
-              }}
-            >
-              <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.16em', color: 'rgba(211,180,127,0.78)', whiteSpace: 'nowrap' }}>
-                PROPOSITION SUR-MESURE
-              </span>
-            </div>
-
-          </div>
-        </Reveal>
 
       </div>
 

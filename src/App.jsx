@@ -2,6 +2,8 @@
 // Architecture V2 — 10 sections, ordre recentré sur le concret
 // Pour dupliquer ce template, remplacer uniquement src/data/client.js
 
+import { useState }    from 'react'
+import LoadingScreen   from './components/LoadingScreen'
 import CursorGlow      from './components/ui/CursorGlow'
 import ParticleField   from './components/ui/ParticleField'
 import Navigation      from './components/Navigation'
@@ -17,8 +19,11 @@ import Signature       from './components/sections/Signature'
 import FinalCTA        from './components/sections/FinalCTA'
 
 export default function App() {
+  const [loaded, setLoaded] = useState(false)
+
   return (
     <>
+      {!loaded && <LoadingScreen onDone={() => setLoaded(true)} />}
       <ParticleField />
       <CursorGlow />
       <Navigation />

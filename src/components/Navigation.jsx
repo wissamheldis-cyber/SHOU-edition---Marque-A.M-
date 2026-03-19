@@ -200,7 +200,9 @@ export default function Navigation() {
 
         {/* ─── Centre — Logo (absolument centré) ─── */}
         <a
-          href="#top"
+          href="https://shou-edition.com/editions/marque"
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             position:       'absolute',
             left:           '50%',

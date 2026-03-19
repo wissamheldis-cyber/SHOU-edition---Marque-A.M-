@@ -6,7 +6,7 @@
 //   autoDelay   → ms entre chaque avance automatique (défaut 3500)
 //   fadeColor   → couleur du dégradé de fondu sur les bords (défaut '#050505')
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 // Icône Play
 function PlayIcon() {
@@ -49,10 +49,20 @@ export default function SectionCarousel({
   const [current,  setCurrent] = useState(0)
   const [playing,  setPlaying] = useState(true)
   const [slideWidth, setSlideWidth] = useState(80)
+  const touchStartX = useRef(null)
   const n = slides.length
 
   const next = useCallback(() => setCurrent(c => (c + 1) % n), [n])
   const prev = useCallback(() => setCurrent(c => (c - 1 + n) % n), [n])
+
+  const onTouchStart = e => { touchStartX.current = e.touches[0].clientX }
+  const onTouchEnd   = e => {
+    if (touchStartX.current === null) return
+    const delta = e.changedTouches[0].clientX - touchStartX.current
+    touchStartX.current = null
+    if (Math.abs(delta) < 40) return   // trop court, pas un swipe
+    if (delta < 0) next(); else prev()
+  }
 
   useEffect(() => {
     const check = () => setSlideWidth(window.innerWidth < 640 ? 90 : 80)
@@ -155,8 +165,12 @@ export default function SectionCarousel({
           <ChevronRight />
         </button>
 
-        {/* Track */}
-        <div style={trackStyle}>
+        {/* Track — swipeable */}
+        <div
+          style={trackStyle}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           {slides.map((slide, i) => {
             const isActive = i === current
             return (

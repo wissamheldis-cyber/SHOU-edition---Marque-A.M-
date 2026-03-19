@@ -48,7 +48,7 @@ export default function FinalCTA() {
         </Reveal>
 
         <Reveal mode="up" delay={350}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <a
               href={`mailto:${studio.contact}`}
               className="inline-flex items-center justify-center gap-2.5 px-10 py-4 rounded-lg font-semibold text-sm transition-all"
@@ -69,6 +69,20 @@ export default function FinalCTA() {
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(211,180,127,0.18)'; e.currentTarget.style.color = 'rgba(211,180,127,0.55)'; e.currentTarget.style.transform = 'translateY(0)'; }}
             >
               Revoir la proposition
+            </a>
+            <a
+              href="https://shou-edition.com/editions/marque"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2.5 px-10 py-4 rounded-lg font-medium text-sm transition-all"
+              style={{ border: '1px solid rgba(255,255,255,0.10)', color: 'rgba(222,218,210,0.45)' }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.22)'; e.currentTarget.style.color = 'rgba(222,218,210,0.82)'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.10)'; e.currentTarget.style.color = 'rgba(222,218,210,0.45)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+            >
+              Découvrir SHOU Edition
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+              </svg>
             </a>
           </div>
         </Reveal>
