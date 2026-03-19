@@ -36,7 +36,7 @@ function VisualSlide({ slide, isActive }) {
             {slide.hint}
           </span>
         </div>
-        <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(222,218,210,0.32)' }}>
+        <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(222,218,210,0.84)' }}>
           {slide.description}
         </p>
       </div>
@@ -52,7 +52,7 @@ export default function VisualDirection() {
         <div className="mb-14 text-center mx-auto max-w-2xl">
           <SectionLabel className="justify-center">{visualDirectionData.sectionLabel}</SectionLabel>
           <h2 className="display-lg mt-2">{visualDirectionData.title}</h2>
-          <p className="font-serif font-light mt-5 text-sm leading-relaxed mx-auto max-w-lg" style={{ color: 'rgba(222,218,210,0.36)' }}>
+          <p className="font-serif font-light mt-5 text-sm leading-relaxed mx-auto max-w-lg" style={{ color: 'rgba(222,218,210,0.85)' }}>
             {visualDirectionData.subtitle}
           </p>
         </div>

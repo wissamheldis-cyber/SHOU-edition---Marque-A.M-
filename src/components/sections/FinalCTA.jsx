@@ -41,9 +41,9 @@ export default function FinalCTA() {
         <Reveal mode="up" delay={250}>
           <p
             className="font-serif font-light text-base leading-relaxed mx-auto mb-14"
-            style={{ color: 'rgba(222,218,210,0.28)', maxWidth: '400px' }}
+            style={{ color: 'rgba(222,218,210,0.82)', maxWidth: '400px' }}
           >
-            Cette page n'est qu'un aperçu. La prochaine étape, c'est de construire la vraie base — ensemble.
+            Cette page n'est qu'un aperçu. La prochaine étape, c'est de construire la vraie base, ensemble.
           </p>
         </Reveal>
 
@@ -76,7 +76,7 @@ export default function FinalCTA() {
         <Reveal mode="fade" delay={500}>
           <div className="mt-24 pt-8" style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}>
             <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.18em', color: 'rgba(211,180,127,0.20)', textTransform: 'uppercase' }}>
-              {studio.name} — {studio.service}
+              {studio.name} · {studio.service}
             </p>
           </div>
         </Reveal>

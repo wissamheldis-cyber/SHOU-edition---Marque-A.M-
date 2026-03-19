@@ -129,34 +129,82 @@ export default function Hero() {
         {/* Sous-titre */}
         <Reveal mode="up" delay={220} duration={1000}>
           <p
-            className="font-serif font-light leading-relaxed mx-auto mb-5"
-            style={{ fontSize: 'clamp(1.05rem, 2vw, 1.35rem)', color: 'rgba(222,218,210,0.46)', maxWidth: '560px' }}
+            className="font-serif font-light leading-relaxed mx-auto mb-8"
+            style={{ fontSize: 'clamp(1.05rem, 2vw, 1.3rem)', color: 'rgba(222,218,210,0.92)', maxWidth: '540px' }}
           >
             {heroData.subtitle}
           </p>
         </Reveal>
 
+        {/* Formule centrale */}
+        <Reveal mode="up" delay={300} duration={1000}>
+          <div className="mb-8 flex flex-col items-center gap-1">
+            {heroData.formula.split('\n').map((line, i) => (
+              <p
+                key={line}
+                className={i === heroData.formula.split('\n').length - 1 ? 'shimmer-text' : ''}
+                style={{
+                  fontFamily:    "'Cormorant Garamond', Georgia, serif",
+                  fontSize:      'clamp(1.6rem, 3.5vw, 2.6rem)',
+                  fontWeight:    300,
+                  lineHeight:    1.1,
+                  letterSpacing: '-0.01em',
+                  color:         i < heroData.formula.split('\n').length - 1
+                    ? `rgba(222,218,210,${i === 0 ? 0.22 : 0.55})`
+                    : undefined,
+                }}
+              >
+                {line}
+              </p>
+            ))}
+          </div>
+        </Reveal>
+
         {/* Séparateur */}
-        <Reveal mode="scale" delay={320} duration={800}>
-          <div className="flex justify-center mb-8">
+        <Reveal mode="scale" delay={380} duration={800}>
+          <div className="flex justify-center mb-6">
             <span className="gold-line" />
           </div>
         </Reveal>
 
+        {/* Pills */}
+        <Reveal mode="up" delay={420} duration={900}>
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            {heroData.pills.map(pill => (
+              <span
+                key={pill}
+                style={{
+                  fontFamily:    "'Share Tech Mono', monospace",
+                  fontSize:      '10px',
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  color:         'rgba(211,180,127,0.62)',
+                  padding:       '6px 14px',
+                  borderRadius:  '999px',
+                  border:        '1px solid rgba(211,180,127,0.20)',
+                  background:    'rgba(211,180,127,0.04)',
+                }}
+              >
+                {pill}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+
         {/* Corps encadré */}
-        <Reveal mode="up" delay={380} duration={1000}>
+        <Reveal mode="up" delay={480} duration={1000}>
           <div
             className="mb-12 p-7 rounded-2xl mx-auto"
             style={{ background: 'rgba(211,180,127,0.03)', border: '1px solid rgba(211,180,127,0.10)', maxWidth: '520px', boxShadow: '0 0 40px rgba(211,180,127,0.04)' }}
           >
-            <p className="text-sm leading-relaxed" style={{ color: 'rgba(222,218,210,0.32)' }}>
+            <p className="text-sm leading-relaxed" style={{ color: 'rgba(222,218,210,0.84)' }}>
               {heroData.body}
             </p>
           </div>
         </Reveal>
 
         {/* CTAs */}
-        <Reveal mode="up" delay={480} duration={1000}>
+        <Reveal mode="up" delay={560} duration={1000}>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href={heroData.cta.primary.href}
@@ -219,7 +267,7 @@ export default function Hero() {
               }}
             >
               <div className="dot-blink" style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'rgba(211,180,127,0.80)', boxShadow: '0 0 6px rgba(211,180,127,0.55)', flexShrink: 0 }} />
-              <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.16em', color: 'rgba(222,218,210,0.45)', whiteSpace: 'nowrap' }}>
+              <span style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.16em', color: 'rgba(222,218,210,0.88)', whiteSpace: 'nowrap' }}>
                 ANALYSE COMPLÉTÉE
               </span>
             </div>

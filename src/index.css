@@ -207,21 +207,13 @@ body {
   /* Label section — mono SHOU */
   .section-label {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 0.78rem;
+    font-size: 1rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
     color: var(--shou-gold-dim);
-  }
-  .section-label::before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.5;
   }
 
   /* Titres display — Cormorant */
@@ -326,8 +318,8 @@ body {
   .display-lg { font-size: clamp(2.2rem, 9vw, 3.2rem); }
   .display-md { font-size: clamp(1.8rem, 7vw, 2.6rem); }
 
-  /* Section label plus compact */
-  .section-label { font-size: 0.68rem; letter-spacing: 0.14em; }
+  /* Section label responsive */
+  .section-label { font-size: 0.88rem; }
 
   /* Ligne or plus courte */
   .gold-line { width: 1.8rem; }

@@ -14,10 +14,10 @@ export default function Signature() {
             <h2 className="font-serif font-light tracking-wide mb-3 leading-tight" style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', color: 'rgba(211,180,127,0.85)' }}>
               {studio.name}
             </h2>
-            <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '10px', letterSpacing: '0.18em', color: 'rgba(222,218,210,0.25)', textTransform: 'uppercase', marginBottom: '2rem' }}>
+            <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '10px', letterSpacing: '0.18em', color: 'rgba(222,218,210,0.78)', textTransform: 'uppercase', marginBottom: '2rem' }}>
               {studio.service}
             </p>
-            <p className="font-serif font-light text-sm leading-relaxed max-w-md" style={{ color: 'rgba(222,218,210,0.30)' }}>
+            <p className="font-serif font-light text-sm leading-relaxed max-w-md" style={{ color: 'rgba(222,218,210,0.82)' }}>
               {studio.tagline}
             </p>
           </Reveal>
@@ -30,11 +30,11 @@ export default function Signature() {
               <p className="font-serif font-light text-base" style={{ color: 'rgba(222,218,210,0.72)' }}>
                 {client.name}
               </p>
-              <p className="text-xs" style={{ color: 'rgba(222,218,210,0.28)' }}>
+              <p className="text-xs" style={{ color: 'rgba(222,218,210,0.82)' }}>
                 {client.sector}
               </p>
               <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1rem' }}>
-                <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.14em', color: 'rgba(222,218,210,0.20)' }}>
+                <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.14em', color: 'rgba(222,218,210,0.75)' }}>
                   {client.domain}
                 </p>
               </div>

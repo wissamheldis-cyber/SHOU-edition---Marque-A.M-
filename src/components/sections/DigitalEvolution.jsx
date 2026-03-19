@@ -54,7 +54,7 @@ function EvolutionSlide({ slide }) {
         <p className="font-serif font-light" style={{ fontSize: '1rem', color: 'rgba(222,218,210,0.72)', marginBottom: '0.5rem' }}>
           {slide.label}
         </p>
-        <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(222,218,210,0.30)', maxWidth: '560px', margin: '0 auto' }}>
+        <p style={{ fontSize: '0.8rem', lineHeight: 1.6, color: 'rgba(222,218,210,0.82)', maxWidth: '560px', margin: '0 auto' }}>
           {slide.description}
         </p>
 
@@ -64,7 +64,7 @@ function EvolutionSlide({ slide }) {
             {slide.features.map(f => (
               <li key={f} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <CheckIcon />
-                <span style={{ fontSize: '0.75rem', color: 'rgba(222,218,210,0.38)' }}>{f}</span>
+                <span style={{ fontSize: '0.75rem', color: 'rgba(222,218,210,0.86)' }}>{f}</span>
               </li>
             ))}
           </ul>
@@ -82,7 +82,7 @@ export default function DigitalEvolution() {
         <div className="mb-14 text-center mx-auto max-w-2xl">
           <SectionLabel className="justify-center">{evolutionData.sectionLabel}</SectionLabel>
           <h2 className="display-lg mt-2">{evolutionData.title}</h2>
-          <p className="font-serif font-light mt-5 text-sm leading-relaxed mx-auto max-w-lg" style={{ color: 'rgba(222,218,210,0.36)' }}>
+          <p className="font-serif font-light mt-5 text-sm leading-relaxed mx-auto max-w-lg" style={{ color: 'rgba(222,218,210,0.85)' }}>
             {evolutionData.subtitle}
           </p>
         </div>

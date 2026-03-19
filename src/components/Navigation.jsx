@@ -5,14 +5,14 @@ import { useActiveSection } from '../hooks/useActiveSection'
 // ─── Indicateur de chapitre ──────────────────────────────
 function ChapterIndicator({ activeId }) {
   const chapters = useMemo(() => [
-    { id: 'lecture',    label: 'Lecture',     num: '01' },
-    { id: 'territoire', label: 'Territoire',  num: '02' },
-    { id: 'supports',   label: 'Supports',    num: '03' },
-    { id: 'offre',      label: 'Proposition', num: '04' },
+    { id: 'besoins',  label: 'Besoins',  num: '01' },
+    { id: 'supports', label: 'Supports', num: '02' },
+    { id: 'base',     label: 'Base',     num: '03' },
+    { id: 'offre',    label: 'Offre',    num: '04' },
   ], [])
 
   return (
-    <div className="hidden lg:flex items-center gap-0">
+    <div className="hidden md:flex items-center gap-0">
       {chapters.map((ch, i) => {
         const isActive = activeId === ch.id
         return (
@@ -116,7 +116,7 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [entered,  setEntered]  = useState(false)
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
-  const sectionIds = useMemo(() => ['lecture', 'territoire', 'supports', 'offre'], [])
+  const sectionIds = useMemo(() => ['besoins', 'supports', 'base', 'offre'], [])
   const activeId   = useActiveSection(sectionIds)
 
   useEffect(() => {

@@ -1,71 +1,57 @@
-// ─── App ──────────────────────────────────────────────────
-// Assemblage de la landing page complète.
+// ─── App V2 ────────────────────────────────────────────────
+// Architecture V2 — 10 sections, ordre recentré sur le concret
 // Pour dupliquer ce template, remplacer uniquement src/data/client.js
 
-import CursorGlow       from './components/ui/CursorGlow'
-import Navigation       from './components/Navigation'
-import Hero             from './components/sections/Hero'
-import ProjectReading   from './components/sections/ProjectReading'
-import CentralHypothesis from './components/sections/CentralHypothesis'
-import BrandTerritory   from './components/sections/BrandTerritory'
-import BrandDirection   from './components/sections/BrandDirection'
-import VisualDirection  from './components/sections/VisualDirection'
-import MultiSupports    from './components/sections/MultiSupports'
-import DurableSystem    from './components/sections/DurableSystem'
+import CursorGlow      from './components/ui/CursorGlow'
+import ParticleField   from './components/ui/ParticleField'
+import Navigation      from './components/Navigation'
+import Hero            from './components/sections/Hero'
+import NeedAnswer      from './components/sections/NeedAnswer'
+import ProjectReading  from './components/sections/ProjectReading'
+import SupportsPriority from './components/sections/SupportsPriority'
+import WhyABase        from './components/sections/WhyABase'
+import VisualDirection from './components/sections/VisualDirection'
 import DigitalEvolution from './components/sections/DigitalEvolution'
-import ValueProposition from './components/sections/ValueProposition'
-import Offer            from './components/sections/Offer'
-import Signature        from './components/sections/Signature'
-import FinalCTA         from './components/sections/FinalCTA'
+import Offer           from './components/sections/Offer'
+import Signature       from './components/sections/Signature'
+import FinalCTA        from './components/sections/FinalCTA'
 
 export default function App() {
   return (
     <>
-      {/* Spotlight doré qui suit le curseur */}
+      <ParticleField />
       <CursorGlow />
-
-      {/* Navigation sticky */}
       <Navigation />
 
-      {/* ── Sections ── */}
       <main>
-        {/* 1. Hero / Ouverture */}
+        {/* A. Hero — accroche directe + formule centrale */}
         <Hero />
 
-        {/* 2. Lecture du projet */}
+        {/* B. NeedAnswer — réponse concrète aux besoins TVIS */}
+        <NeedAnswer />
+
+        {/* C. ProjectReading — lecture en 3 angles (fait / attentes / rôle marque) */}
         <ProjectReading />
 
-        {/* 3. Hypothèse centrale */}
-        <CentralHypothesis />
+        {/* D. SupportsPriority — les supports attendus, repositionnés */}
+        <SupportsPriority />
 
-        {/* 4. Territoire de marque */}
-        <BrandTerritory />
+        {/* E. WhyABase — production isolée vs base structurée */}
+        <WhyABase />
 
-        {/* 5. Direction de marque */}
-        <BrandDirection />
-
-        {/* 6. Direction visuelle */}
+        {/* F. VisualDirection — ce que ça donnera visuellement */}
         <VisualDirection />
 
-        {/* 7. Projection multi-supports */}
-        <MultiSupports />
-
-        {/* 8. Système durable */}
-        <DurableSystem />
-
-        {/* 9. Évolution digitale */}
+        {/* G. DigitalEvolution — puis une présence digitale */}
         <DigitalEvolution />
 
-        {/* 10. Ce que cette approche apporte */}
-        <ValueProposition />
-
-        {/* 11. Proposition d'accompagnement */}
+        {/* H. Offer — 3 phases de livraison */}
         <Offer />
 
-        {/* 12. Signature SHOU Edition */}
+        {/* I. Signature */}
         <Signature />
 
-        {/* 13. Bloc final / CTA */}
+        {/* J. FinalCTA */}
         <FinalCTA />
       </main>
     </>

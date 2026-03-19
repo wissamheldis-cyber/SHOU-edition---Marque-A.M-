@@ -34,7 +34,7 @@ export default function ProjectReading() {
                 {col.label}
               </h3>
               <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }} />
-              <p className="text-sm leading-relaxed" style={{ color: 'rgba(222,218,210,0.38)' }}>
+              <p className="text-sm leading-relaxed" style={{ color: 'rgba(222,218,210,0.86)' }}>
                 {col.text}
               </p>
             </article>
