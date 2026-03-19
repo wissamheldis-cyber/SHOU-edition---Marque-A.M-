@@ -48,10 +48,18 @@ export default function SectionCarousel({
 }) {
   const [current,  setCurrent] = useState(0)
   const [playing,  setPlaying] = useState(true)
+  const [slideWidth, setSlideWidth] = useState(80)
   const n = slides.length
 
   const next = useCallback(() => setCurrent(c => (c + 1) % n), [n])
   const prev = useCallback(() => setCurrent(c => (c - 1 + n) % n), [n])
+
+  useEffect(() => {
+    const check = () => setSlideWidth(window.innerWidth < 640 ? 90 : 80)
+    check()
+    window.addEventListener('resize', check, { passive: true })
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   // Auto-avance
   useEffect(() => {
@@ -60,11 +68,11 @@ export default function SectionCarousel({
     return () => clearInterval(t)
   }, [playing, next, autoDelay])
 
-  // Chaque slide occupe 80% du container → 10% visibles de chaque côté
-  // translateX : 10% - current * 80% (centre la slide active)
+  // Chaque slide occupe slideWidth% du container → marges visibles de chaque côté
+  // translateX : centrage de la slide active
   const trackStyle = {
     display:    'flex',
-    transform:  `translateX(calc(10% - ${current * 80}%))`,
+    transform:  `translateX(calc(${(100 - slideWidth) / 2}% - ${current * slideWidth}%))`,
     transition: 'transform 0.72s cubic-bezier(0.16,1,0.3,1)',
   }
 
@@ -76,12 +84,12 @@ export default function SectionCarousel({
 
         {/* Dégradés de fondu latéraux */}
         <div aria-hidden="true" style={{
-          position: 'absolute', left: 0, top: 0, bottom: 0, width: '11%',
+          position: 'absolute', left: 0, top: 0, bottom: 0, width: `${Math.max((100 - slideWidth) / 2 + 1, 4)}%`,
           background: `linear-gradient(to right, ${fadeColor}, transparent)`,
           pointerEvents: 'none', zIndex: 5,
         }} />
         <div aria-hidden="true" style={{
-          position: 'absolute', right: 0, top: 0, bottom: 0, width: '11%',
+          position: 'absolute', right: 0, top: 0, bottom: 0, width: `${Math.max((100 - slideWidth) / 2 + 1, 4)}%`,
           background: `linear-gradient(to left, ${fadeColor}, transparent)`,
           pointerEvents: 'none', zIndex: 5,
         }} />
@@ -98,6 +106,8 @@ export default function SectionCarousel({
             zIndex:          10,
             width:           '36px',
             height:          '36px',
+            minWidth:        '44px',
+            minHeight:       '44px',
             borderRadius:    '50%',
             display:         'flex',
             alignItems:      'center',
@@ -126,6 +136,8 @@ export default function SectionCarousel({
             zIndex:          10,
             width:           '36px',
             height:          '36px',
+            minWidth:        '44px',
+            minHeight:       '44px',
             borderRadius:    '50%',
             display:         'flex',
             alignItems:      'center',
@@ -152,7 +164,7 @@ export default function SectionCarousel({
                 key={i}
                 style={{
                   flexShrink:      0,
-                  width:           '80%',
+                  width:           `${slideWidth}%`,
                   padding:         '0 12px',
                   transition:      'opacity 0.65s cubic-bezier(0.16,1,0.3,1), filter 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1)',
                   opacity:         isActive ? 1 : 0.28,

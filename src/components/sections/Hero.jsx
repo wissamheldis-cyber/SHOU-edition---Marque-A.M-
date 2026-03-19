@@ -18,8 +18,8 @@ function ClientLogo() {
         src={images.clientLogo}
         alt={client.name}
         style={{
-          maxHeight:  '120px',
-          maxWidth:   '340px',
+          maxHeight:  '80px',
+          maxWidth:   '240px',
           width:      'auto',
           objectFit:  'contain',
           filter:     'drop-shadow(0 0 20px rgba(255,255,255,0.06))',
@@ -109,7 +109,7 @@ export default function Hero() {
       </div>
 
       {/* ─── Contenu ─── */}
-      <div className="relative z-10 container-page pt-40 pb-20 flex flex-col items-center">
+      <div className="relative z-10 container-page pt-24 md:pt-32 lg:pt-40 pb-16 lg:pb-20 flex flex-col items-center">
 
         {/* Label studio + dot */}
         <Reveal mode="fade" delay={0} duration={700}>
@@ -182,7 +182,7 @@ export default function Hero() {
 
         {/* ─── Zone image ─── */}
         <Reveal mode="up" delay={640} duration={1200}>
-          <div className="relative mt-20 w-full max-w-5xl mx-auto">
+          <div className="relative mt-12 lg:mt-20 w-full max-w-5xl mx-auto">
             {/* Ombres de profondeur */}
             <div className="absolute inset-4 rounded-2xl" style={{ background: 'rgba(211,180,127,0.03)', border: '1px solid rgba(211,180,127,0.06)', transform: 'rotate(1deg) translateY(8px)', zIndex: 0 }} />
             <div className="absolute inset-2 rounded-2xl" style={{ background: 'rgba(211,180,127,0.015)', border: '1px solid rgba(211,180,127,0.04)', transform: 'rotate(-0.5deg) translateY(4px)', zIndex: 0 }} />

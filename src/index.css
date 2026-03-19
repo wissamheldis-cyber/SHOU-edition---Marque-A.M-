@@ -310,3 +310,25 @@ body {
   background: rgba(211,180,127,0.16);
   color: var(--shou-text);
 }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE MOBILE
+   ═══════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* Conteneur — padding réduit */
+  .container-page {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+
+  /* Titres display réduits sur petits écrans */
+  .display-xl { font-size: clamp(2.6rem, 11vw, 4rem); }
+  .display-lg { font-size: clamp(2.2rem, 9vw, 3.2rem); }
+  .display-md { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+
+  /* Section label plus compact */
+  .section-label { font-size: 0.68rem; letter-spacing: 0.14em; }
+
+  /* Ligne or plus courte */
+  .gold-line { width: 1.8rem; }
+}

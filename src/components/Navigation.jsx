@@ -72,9 +72,9 @@ function ChapterIndicator({ activeId }) {
 }
 
 // ─── Logo SHOU ─────────────────────────────────────────────
-function StudioLogo({ scrolled }) {
-  const h  = scrolled ? '52px' : '100px'
-  const mw = scrolled ? '200px' : '360px'
+function StudioLogo({ scrolled, isMobile }) {
+  const h  = isMobile ? '46px' : scrolled ? '52px' : '100px'
+  const mw = isMobile ? '160px' : scrolled ? '200px' : '360px'
 
   if (images.studioLogo) {
     return (
@@ -115,16 +115,20 @@ function StudioLogo({ scrolled }) {
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [entered,  setEntered]  = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
   const sectionIds = useMemo(() => ['lecture', 'territoire', 'supports', 'offre'], [])
   const activeId   = useActiveSection(sectionIds)
 
   useEffect(() => {
     const t = setTimeout(() => setEntered(true), 80)
     const onScroll = () => setScrolled(window.scrollY > 50)
+    const onResize = () => setIsMobile(window.innerWidth < 768)
     window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onResize, { passive: true })
     return () => {
       clearTimeout(t)
       window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onResize)
     }
   }, [])
 
@@ -134,7 +138,7 @@ export default function Navigation() {
 
   // Demi-largeur du logo + marge de sécurité = zone protégée autour du centre
   // logo maxWidth scrolled=160px → half=80px | unscrolled=280px → half=140px
-  const safeZone = scrolled ? '100px' : '160px'
+  const safeZone = isMobile ? '0px' : scrolled ? '100px' : '160px'
 
   return (
     <nav
@@ -145,7 +149,7 @@ export default function Navigation() {
         left:                 0,
         right:                0,
         zIndex:               50,
-        height:               scrolled ? '72px' : '116px',
+        height:               isMobile ? '64px' : scrolled ? '72px' : '116px',
         background:           scrolled ? 'rgba(5,5,5,0.94)' : 'rgba(5,5,5,0.22)',
         backdropFilter:       'blur(36px) saturate(160%)',
         WebkitBackdropFilter: 'blur(36px) saturate(160%)',
@@ -210,7 +214,7 @@ export default function Navigation() {
             zIndex:         2,
           }}
         >
-          <StudioLogo scrolled={scrolled} />
+          <StudioLogo scrolled={scrolled} isMobile={isMobile} />
         </a>
 
         {/* ─── Droite — Identité proposition ─── */}

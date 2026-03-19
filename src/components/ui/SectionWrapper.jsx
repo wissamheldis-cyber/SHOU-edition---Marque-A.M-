@@ -11,7 +11,7 @@ export default function SectionWrapper({ children, id, variant = 'base', classNa
 
   return (
     <section id={id} className={`${variants[variant]} ${className}`}>
-      <div className="container-page py-24 lg:py-32">
+      <div className="container-page py-14 md:py-20 lg:py-32">
         {children}
       </div>
     </section>

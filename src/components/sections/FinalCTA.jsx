@@ -14,7 +14,7 @@ export default function FinalCTA() {
         <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px)', backgroundSize: '80px 80px' }} />
       </div>
 
-      <div className="relative z-10 container-page py-36 lg:py-48 flex flex-col items-center">
+      <div className="relative z-10 container-page py-20 md:py-28 lg:py-48 flex flex-col items-center">
 
         <Reveal mode="fade">
           <p style={{ fontFamily: "'Share Tech Mono', monospace", fontSize: '9px', letterSpacing: '0.20em', color: 'rgba(211,180,127,0.28)', textTransform: 'uppercase', marginBottom: '2.5rem' }}>
