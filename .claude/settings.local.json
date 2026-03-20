@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:shou-edition.com)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git remote:*)",
+      "Bash(git branch:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(grep -v \"^[[:space:]]*//\")",
+      "Bash(grep -v \"^\\\\s*//\")",
+      "Bash(grep -v \"^[0-9]*:[[:space:]]*//\")",
+      "Bash(grep -v \"^[^:]*:[0-9]*:[[:space:]]*//\")",
+      "Bash(npx vite:*)"
+    ]
+  }
+}
